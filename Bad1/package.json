@@ -1,0 +1,11 @@
+{
+  "name": "bad1",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "kenjiuno",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "coa": "^2.0.2"
+  }
+}

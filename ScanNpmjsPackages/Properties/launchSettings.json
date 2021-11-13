@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ScanNpmjsPackages": {
+      "commandName": "Project",
+      "commandLineArgs": "-d H:\\Proj\\ScanNpmjsPackages\\Bad1"
+    }
+  }
+}
