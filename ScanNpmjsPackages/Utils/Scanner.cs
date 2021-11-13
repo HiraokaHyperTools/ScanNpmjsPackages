@@ -56,31 +56,36 @@ namespace ScanNpmjsPackages.Utils
 
         private IEnumerable<Hit> ScanDir(string dir)
         {
-            var yarnLockFile = Path.Combine(dir, "yarn.lock");
-            if (File.Exists(yarnLockFile))
             {
-                log.Debug("Scanning npm: {0}", yarnLockFile);
-                var uses = YarnLockDecoder.Decode(File.ReadAllLines(yarnLockFile, Encoding.Latin1))
-                        .Select(it => new PackageRef { id = $"{it.name}@{it.version}" })
-                        .ToArray();
-                var match = Filter(uses);
-                if (match.Any())
+                var yarnLockFile = Path.Combine(dir, "yarn.lock");
+                if (File.Exists(yarnLockFile))
                 {
-                    yield return new Hit { File = yarnLockFile, Matches = match.ToArray(), };
+                    log.Debug("Scanning npm: {0}", yarnLockFile);
+                    var uses = YarnLockDecoder.Decode(File.ReadAllLines(yarnLockFile, Encoding.Latin1))
+                            .Select(it => new PackageRef { id = $"{it.name}@{it.version}" })
+                            .ToArray();
+                    var match = Filter(uses);
+                    if (match.Any())
+                    {
+                        yield return new Hit { File = yarnLockFile, Matches = match.ToArray(), };
+                    }
                 }
             }
-            var packageLockJsonFile = Path.Combine(dir, "package-lock.json");
-            if (File.Exists(packageLockJsonFile))
+
             {
-                log.Debug("Scanning yarn: {0}", packageLockJsonFile);
-                var uses = JsonSerializer.Deserialize<PackageLock>(File.ReadAllText(packageLockJsonFile))
-                        .dependencies
-                        .Select(it => new PackageRef { id = $"{it.Key}@{it.Value.version}" })
-                        .ToArray();
-                var match = Filter(uses);
-                if (match.Any())
+                var packageLockJsonFile = Path.Combine(dir, "package-lock.json");
+                if (File.Exists(packageLockJsonFile))
                 {
-                    yield return new Hit { File = yarnLockFile, Matches = match.ToArray(), };
+                    log.Debug("Scanning yarn: {0}", packageLockJsonFile);
+                    var uses = JsonSerializer.Deserialize<PackageLock>(File.ReadAllText(packageLockJsonFile))
+                            .dependencies
+                            .Select(it => new PackageRef { id = $"{it.Key}@{it.Value.version}" })
+                            .ToArray();
+                    var match = Filter(uses);
+                    if (match.Any())
+                    {
+                        yield return new Hit { File = packageLockJsonFile, Matches = match.ToArray(), };
+                    }
                 }
             }
         }
