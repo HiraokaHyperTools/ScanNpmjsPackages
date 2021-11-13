@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Compromised>
-  <!-- https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident.html -->
-  <Package id="event-stream@3.3.6" />
+  <!-- https://qiita.com/mysticatea/items/aac027f9183ea9f0f9b1 -->
+  <Package id="flatmap-stream@0.1.1" />
 
   <!-- https://therecord.media/malware-found-in-coa-and-rc-two-npm-packages-with-23m-weekly-downloads/#:~:text=Malware-,Malware%20found%20in%20coa%20and%20rc%2C%20two%20npm%20packages%20with,to%20be%20password%2Dstealing%20malware. -->
   <!-- https://news.mynavi.jp/article/20211109-2181690/ -->
